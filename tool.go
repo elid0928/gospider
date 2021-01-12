@@ -2,15 +2,16 @@ package gospider
 
 import (
 	"crypto/md5"
-	"github.com/rs/zerolog"
-	"github.com/rs/zerolog/pkgerrors"
-	"github.com/zhshch2002/goreq"
 	"io/ioutil"
 	"net/url"
 	"os"
 	"runtime"
 	"sort"
 	"strings"
+
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/pkgerrors"
+	"github.com/zhshch2002/goreq"
 )
 
 var log = zerolog.New(zerolog.ConsoleWriter{Out: os.Stdout}).With().Timestamp().Stack().Logger()
@@ -19,6 +20,7 @@ func init() {
 	zerolog.ErrorStackMarshaler = pkgerrors.MarshalStack
 }
 
+// SprintStack 返回一个字符串的buf
 func SprintStack() string {
 	var buf [4096]byte
 	n := runtime.Stack(buf[:], false)
@@ -26,6 +28,7 @@ func SprintStack() string {
 }
 
 // GetRequestHash return a hash of url,header,cookie and body data from a request
+// 返回一个请求的hash， 包括URL, 请求头，cookie和请求体
 func GetRequestHash(r *goreq.Request) [md5.Size]byte {
 	u := r.URL
 	UrtStr := u.Scheme + "://"

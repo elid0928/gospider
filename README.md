@@ -1,5 +1,5 @@
 # Gospider
-[![codecov](https://codecov.io/gh/zhshch2002/gospider/branch/master/graph/badge.svg)](https://codecov.io/gh/zhshch2002/gospider)
+[![codecov](https://codecov.io/gh/gotodwon/gospider/branch/master/graph/badge.svg)](https://codecov.io/gh/gotodwon/gospider)
 
 [中文文档](https://gospider.xzhsh.ch/)
 
@@ -59,7 +59,7 @@ Goreq可以设置中间件、更换Http Client。请见[Goreq](./goreq.md)一章
 ## ⚡建立爬虫
 
 ```shell
-go get -u github.com/zhshch2002/gospider
+go get -u github.com/gotodwon/gospider
 ```
 
 第一个例子：
@@ -69,7 +69,7 @@ package main
 
 import (
 	"github.com/zhshch2002/goreq"
-	"github.com/zhshch2002/gospider"
+	"github.com/gotodwon/gospider"
 )
 
 func main() {
@@ -132,7 +132,7 @@ package main
 import (
 	"github.com/PuerkitoBio/goquery"
 	"github.com/zhshch2002/goreq"
-	"github.com/zhshch2002/gospider"
+	"github.com/gotodwon/gospider"
 )
 
 /* colly example http://go-colly.org/docs/examples/basic/

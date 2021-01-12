@@ -2,10 +2,12 @@ package gospider
 
 import (
 	"fmt"
+
 	"github.com/rs/zerolog"
 	"github.com/zhshch2002/goreq"
 )
 
+// Context 上下文， 包含爬虫， 请求， 相应， 元数据
 type Context struct {
 	s     *Spider
 	Req   *goreq.Request
@@ -24,7 +26,8 @@ func (c *Context) IsAborted() bool {
 	return c.abort
 }
 
-// addTask add a task to new task list. After every handler func return,spider will collect these tasks
+// AddTask add a task to new task list. After every handler func return,spider will collect these tasks
+// 使用Handler来处理这些请求， Handler可以为多个
 func (c *Context) AddTask(req *goreq.Request, h ...Handler) {
 	if !req.URL.IsAbs() {
 		req.URL = c.Req.URL.ResolveReference(req.URL)
@@ -36,7 +39,7 @@ func (c *Context) AddTask(req *goreq.Request, h ...Handler) {
 	c.s.addTask(t)
 }
 
-// addItem add an item to new item list. After every handler func return,
+// AddItem add an item to new item list. After every handler func return,
 // spider will collect these items and call OnItem handler func
 func (c *Context) AddItem(i interface{}) {
 	c.s.addItem(&Item{
